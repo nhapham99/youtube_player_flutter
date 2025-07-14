@@ -310,24 +310,28 @@ class _RawYoutubePlayerState extends State<RawYoutubePlayer>
                             ${controller!.flags.hideYoutubeOverlay ? '''
                             // Additional JavaScript to hide overlay elements
                             function hideOverlayElements() {
-                                var iframe = document.querySelector('iframe');
-                                if (iframe && iframe.contentDocument) {
-                                    var style = iframe.contentDocument.createElement('style');
-                                    style.textContent = `
-                                        .ytp-title, .ytp-chrome-top, .ytp-show-cards-title,
-                                        .ytp-title-text, .ytp-title-link, .ytp-title-expanded-overlay,
-                                        .ytp-gradient-top, .ytp-videowall-still, .ytp-ce-element,
-                                        .ytp-cards-teaser, .iv-branding, .ytp-pause-overlay,
-                                        .ytp-watermark, .ytp-chrome-bottom .ytp-watermark,
-                                        .branding-img, .ytp-youtube-button, .ytp-youtube-logo,
-                                        .ytp-watermark-logo, .ytp-impression-link {
-                                            display: none !important;
-                                            visibility: hidden !important;
-                                            opacity: 0 !important;
-                                        }
-                                    `;
-                                    iframe.contentDocument.head.appendChild(style);
-                                }
+                              try {
+                                var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                                if (!iframeDoc) return;
+
+                                var style = iframeDoc.createElement('style');
+                                style.innerHTML = `
+                                  .ytp-title, .ytp-chrome-top, .ytp-show-cards-title,
+                                  .ytp-title-text, .ytp-title-link, .ytp-title-expanded-overlay,
+                                  .ytp-gradient-top, .ytp-videowall-still, .ytp-ce-element,
+                                  .ytp-cards-teaser, .iv-branding, .ytp-pause-overlay,
+                                  .ytp-watermark, .ytp-chrome-bottom .ytp-watermark,
+                                  .branding-img, .ytp-youtube-button, .ytp-youtube-logo,
+                                  .ytp-watermark-logo, .ytp-impression-link {
+                                    display: none !important;
+                                    visibility: hidden !important;
+                                    opacity: 0 !important;
+                                  }
+                                `;
+                                iframeDoc.head.appendChild(style);
+                              } catch (e) {
+                                console.warn("Unable to inject hideOverlayElements: ", e);
+                              }
                             }
                             setTimeout(hideOverlayElements, 1000);
                             setInterval(hideOverlayElements, 2000);
