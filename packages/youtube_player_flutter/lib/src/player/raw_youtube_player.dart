@@ -254,7 +254,14 @@ class _RawYoutubePlayerState extends State<RawYoutubePlayer>
             .ytp-ce-element,
             .ytp-cards-teaser,
             .iv-branding,
-            .ytp-pause-overlay {
+            .ytp-pause-overlay,
+            .ytp-watermark,
+            .ytp-chrome-bottom .ytp-watermark,
+            .branding-img,
+            .ytp-youtube-button,
+            .ytp-youtube-logo,
+            .ytp-watermark-logo,
+            .ytp-impression-link {
                 display: none !important;
                 visibility: hidden !important;
                 opacity: 0 !important;
@@ -310,7 +317,10 @@ class _RawYoutubePlayerState extends State<RawYoutubePlayer>
                                         .ytp-title, .ytp-chrome-top, .ytp-show-cards-title,
                                         .ytp-title-text, .ytp-title-link, .ytp-title-expanded-overlay,
                                         .ytp-gradient-top, .ytp-videowall-still, .ytp-ce-element,
-                                        .ytp-cards-teaser, .iv-branding, .ytp-pause-overlay {
+                                        .ytp-cards-teaser, .iv-branding, .ytp-pause-overlay,
+                                        .ytp-watermark, .ytp-chrome-bottom .ytp-watermark,
+                                        .branding-img, .ytp-youtube-button, .ytp-youtube-logo,
+                                        .ytp-watermark-logo, .ytp-impression-link {
                                             display: none !important;
                                             visibility: hidden !important;
                                             opacity: 0 !important;
