@@ -19,7 +19,7 @@ class YoutubeApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = ColorScheme.fromSeed(
       seedColor: Colors.green,
-      dynamicSchemeVariant: DynamicSchemeVariant.expressive,
+      // dynamicSchemeVariant: DynamicSchemeVariant.expressive,
       brightness: Brightness.dark,
     );
 
